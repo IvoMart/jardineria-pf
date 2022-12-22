@@ -3,15 +3,17 @@ package jardineria.jardineriapf.controladores;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @RestController
-public class HomeControlador {
-    
-    @RequestMapping("/")
-    public ModelAndView home(){
+public class EjemploControlador {
+
+    @RequestMapping("/roles")
+    public ModelAndView ejemplo(){
         ModelAndView maw = new ModelAndView();
         maw.setViewName("fragments/base");
-        maw.addObject("titulo", "Home");
-        maw.addObject("vista", "inicio/home");
+        maw.addObject("titulo", "ejemplo");
+        maw.addObject("vista", "plantas/roles");
+        //maw.addObject("paises", paisServicio.getAll());
         return maw;
     }
 
