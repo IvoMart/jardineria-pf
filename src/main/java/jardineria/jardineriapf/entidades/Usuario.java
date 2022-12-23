@@ -1,9 +1,7 @@
 package jardineria.jardineriapf.entidades;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.*;
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import lombok.*;
 
 @Entity

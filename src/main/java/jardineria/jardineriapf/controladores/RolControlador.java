@@ -2,14 +2,10 @@ package jardineria.jardineriapf.controladores;
 
 import jardineria.jardineriapf.entidades.*;
 import jardineria.jardineriapf.servicios.*;
-import java.util.*;
-import java.io.*;
-import java.nio.file.Paths;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.validation.BindingResult; //esto devuleve el mismo formulario en caso de error
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
