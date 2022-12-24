@@ -66,7 +66,7 @@ public class EmailServicio {
             sender.send(correo);
         } catch ( /* cuando no se peude crear el correo */ MessagingException e) {
             e.printStackTrace();
-        } catch ( /* cuando no se encuentra el atchivo */FileNotFoundException e) {
+        } catch ( /* cuando no se encuentra el atchivo */ FileNotFoundException e) {
             e.printStackTrace();
         }
     }

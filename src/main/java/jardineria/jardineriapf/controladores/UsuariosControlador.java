@@ -5,6 +5,9 @@ import jardineria.jardineriapf.servicios.*;
 import java.util.*;
 import java.io.*;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 
@@ -57,10 +60,22 @@ public class UsuariosControlador implements WebMvcConfigurer{
         maw.addObject("usuario", usuarioServicio.getById(id));
 
         //emailServicio.enviarMailSimple("romeroarmando094@gmail.com", "Prueba de correo", usuarioServicio.getById(id).getNombre()); //esto es para prubar el servicio de Email
-        
+         /*
         String[] adjuntos = {"classpath:static/images/fondo.jpg", "classpath:static/images/plantas/prueba.jpg"};
         emailServicio.enviarMailConAdjunto("romeroarmando094@gmail.com", "Prueba de envio de adjuntos", "Este correo tiene adjuntos", adjuntos);
+        */
+        
+        Map<String, Object> atributos = new HashMap<>();
+        atributos.put("nombre", "Armando");
+        atributos.put("fecha", LocalDate.now().toString());
+        atributos.put("habilidades", Arrays.asList("Java", "PHP", "CSS"));
 
+        try{
+            emailServicio.enviarMailHtml("romeroarmando094@gmail.com", "Email de prueba con thymeleaf", "emails/ejemplo.html", atributos);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        
         return maw;
 
     }
