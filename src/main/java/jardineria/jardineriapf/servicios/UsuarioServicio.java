@@ -2,8 +2,6 @@ package jardineria.jardineriapf.servicios;
 
 import java.util.*;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,7 +9,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.*;
 
 import jardineria.jardineriapf.entidades.*;

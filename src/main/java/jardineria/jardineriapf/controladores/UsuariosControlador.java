@@ -2,12 +2,6 @@ package jardineria.jardineriapf.controladores;
 
 import jardineria.jardineriapf.entidades.*;
 import jardineria.jardineriapf.servicios.*;
-import java.util.*;
-import java.io.*;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-
-import javax.mail.MessagingException;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.validation.BindingResult; //esto devuleve el mismo formulario en caso de error
