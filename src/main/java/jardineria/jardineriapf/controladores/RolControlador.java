@@ -112,7 +112,7 @@ public class RolControlador implements WebMvcConfigurer{
         ModelAndView maw = this.index();
 
         rolServicio.save(registro);
-        maw.addObject("exito", "Jugador Editado Exitosamente");
+        maw.addObject("exito", "Rol Editado Exitosamente");
         return maw;
     }
 
@@ -120,7 +120,7 @@ public class RolControlador implements WebMvcConfigurer{
     private ModelAndView delete(@PathVariable("id") Long id) {
         rolServicio.delete(id);
         ModelAndView maw = this.index();
-        maw.addObject("exito", "Jugador borrado exitosamente");
+        maw.addObject("exito", "Rol borrado exitosamente");
         return maw;
     }
 }

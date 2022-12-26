@@ -64,7 +64,7 @@ public class UsuariosControlador implements WebMvcConfigurer{
         String[] adjuntos = {"classpath:static/images/fondo.jpg", "classpath:static/images/plantas/prueba.jpg"};
         emailServicio.enviarMailConAdjunto("romeroarmando094@gmail.com", "Prueba de envio de adjuntos", "Este correo tiene adjuntos", adjuntos);
         */
-        
+        /* 
         Map<String, Object> atributos = new HashMap<>();
         atributos.put("nombre", "Armando");
         atributos.put("fecha", LocalDate.now().toString());
@@ -75,7 +75,7 @@ public class UsuariosControlador implements WebMvcConfigurer{
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        
+        */
         return maw;
 
     }
@@ -139,7 +139,7 @@ public class UsuariosControlador implements WebMvcConfigurer{
         Usuario registro = usuarioServicio.getById(id);
         registro.setNombre(usuario.getNombre());
         registro.setEmail(usuario.getEmail());
-        registro.setClave(usuario.getClave());
+        registro.setPassword(usuario.getPassword());
         registro.setEstado(usuario.getEstado());
         registro.setRol(usuario.getRol());
         ModelAndView maw = this.index();

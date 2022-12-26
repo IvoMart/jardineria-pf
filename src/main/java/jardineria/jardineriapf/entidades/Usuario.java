@@ -18,16 +18,18 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //TIPO DE GENERACION - AUTOINCREMENTAL 
     private Long id;
 
+    @Column(unique = true)
     private String email;
 
     private String nombre;
     
-    private String clave;
+    private String password;
 
     private Integer estado;
 
     @ManyToOne
     @JsonBackReference
+    @NotNull
     private Rol rol;
 
 }

@@ -17,9 +17,9 @@
                         <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                     </div>
                     <div class="mb-3"><!-- texto -->
-                        <label for="clave" class="form-label">Contraseña</label>       
-                        <input type="text" class="form-control" id="clave" th:field="*{clave}" th:errorClass="'is-invalid'">
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}"></div>
+                        <label for="password" class="form-label">Contraseña</label>       
+                        <input type="text" class="form-control" id="password" th:field="*{password}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                     </div>
                     <div class="mb-3">
                         <label for="estado" class="form-label">Seleccione un Estado</label><!-- select2 -->
