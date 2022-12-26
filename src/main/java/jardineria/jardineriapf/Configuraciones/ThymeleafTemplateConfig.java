@@ -2,7 +2,7 @@ package jardineria.jardineriapf.Configuraciones;
 
 import java.nio.charset.StandardCharsets;
 import org.springframework.context.annotation.*;
-//import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
@@ -15,8 +15,8 @@ public class ThymeleafTemplateConfig {
         SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
         springTemplateEngine.addTemplateResolver(emailTemplateResolver());
 
-       // springTemplateEngine.setEnableSpringELCompiler(true);
-       // springTemplateEngine.addDialect(new SpringSecurityDialect());
+       springTemplateEngine.setEnableSpringELCompiler(true);
+       springTemplateEngine.addDialect(new SpringSecurityDialect());
 
         return springTemplateEngine;
     }

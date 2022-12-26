@@ -20,6 +20,7 @@ public class Rol {
 
     @NotBlank(message = "Campo obligatorio") //define al atributo nombre (Es Una Validacion)
     @Size(max = 100, message= "Nombre demasiado largo")
+    @Column(unique = true)
     private String nombre;
 
     @NotBlank(message = "Campo obligatorio") //define al atributo nombre (Es Una Validacion)
