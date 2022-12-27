@@ -1,8 +1,3 @@
-@font-face {
-    font-family: 'Qatar2022';
-    src: url("/fonts/Qatar2022.woff2");
-}
-
 body {
     background: url("/images/fondo.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;

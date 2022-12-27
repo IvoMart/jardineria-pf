@@ -1,4 +1,4 @@
-package jardineria.jardineriapf.Validaciones;
+package jardineria.jardineriapf.validaciones;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.TYPE;

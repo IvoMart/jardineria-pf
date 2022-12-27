@@ -30,7 +30,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests()
-                .antMatchers("/css/*", "/js/*", "/fonts/*", "/images/*", "/images/*/*", "/", "/registro")
+                .antMatchers("/assets/*", "/css/*", "/js/*", "/fonts/*", "/images/*", "/images/*/*", "/", "/registro")
                 .permitAll()
             .and()
             .authorizeHttpRequests().antMatchers("/usuarios")//aca en realidad tendria que ir plantas
@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 .hasRole("Administrador")
             .and()
             .authorizeHttpRequests().antMatchers("/usuarios/editar/*")//aca en tambien
-                .hasRole("Usuario")
+                .hasAnyRole("Administrador", "Usuario")
                 .anyRequest().authenticated()
             .and()
             .formLogin().loginPage("/login").loginProcessingUrl("/logincheck")
