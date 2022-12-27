@@ -2,6 +2,9 @@ package jardineria.jardineriapf.servicios;
 
 import java.util.*;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -69,7 +72,7 @@ public class UsuarioServicio implements UserDetailsService{
 
     }
 
-    public void save(Usuario usuario){
+    public void save(@Valid Usuario usuario){
 
         usuarioRepositorio.save(usuario);
 

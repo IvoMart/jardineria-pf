@@ -3,7 +3,11 @@ package jardineria.jardineriapf.controladores;
 import jardineria.jardineriapf.dto.*;
 import jardineria.jardineriapf.entidades.*;
 import jardineria.jardineriapf.repositorios.*;
+import jardineria.jardineriapf.servicios.RecuperacionServicio;
+
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; //encriptador
 import org.springframework.stereotype.Controller;
@@ -27,6 +31,15 @@ public class AuthControlador {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+
+    @Autowired
+    private RecuperacionRepositorio recuperacionRepositorio;
+
+    @Autowired
+    private RecuperacionServicio recuperacionServicio;
+
+    @Autowired
+    private HomeControlador homeControlador;
 
     //@Autowired
     //private RecaptchaServicio recaptchaServicio;
@@ -64,19 +77,15 @@ public class AuthControlador {
 	@PostMapping("/registro")
 	public ModelAndView registrar(/*@RequestParam(name="g-recaptcha-response") String recaptchaResponse,*/ @Valid RegistroDto registroDto, BindingResult br, RedirectAttributes ra, HttpServletRequest request)
     {
-        //String ip = request.getRemoteAddr();
-        //String captchaVerifyMessage = recaptchaServicio.verifyRecaptcha(ip, recaptchaResponse);
-        /* 
-        if (captchaVerifyMessage != "") {
-            br.rejectValue("recaptcha", "recaptcha", captchaVerifyMessage);
-        }
-        */
+    
         if ( br.hasErrors() ) {
 			return this.registro(registroDto);
 		}
 
         Usuario u = new Usuario();
+        u.setNombre(registroDto.getNombre());
         u.setEmail(registroDto.getEmail());
+        u.setEstado(1);
         u.setPassword(codificador.encode(registroDto.getPassword()));
         u.setRol(rolRepositorio.findByNombre("Usuario").orElseThrow(() -> new IllegalArgumentException("Error al crear usuario")));
 
@@ -90,6 +99,51 @@ public class AuthControlador {
 
         HomeControlador hc = new HomeControlador();
         return hc.home();
+	}
+
+    @GetMapping("/cambio/{id}")
+	public ModelAndView cambio(@PathVariable("id") Long id, CambioDto cambioDto) 
+    {
+        ModelAndView maw = new ModelAndView();
+        maw.setViewName("fragments/base");
+        maw.addObject("titulo", "Registrarse");
+        maw.addObject("vista", "recuperacion/editar");
+        maw.addObject("recuperacion", recuperacionServicio.getById(id));
+        //maw.addObject("cambioDto", cambioDto);
+        return maw;
+	}
+
+    @GetMapping("/crear")
+	public ModelAndView crear(RecuperacionDto recuperacionDto)
+    {
+        ModelAndView maw = new ModelAndView();
+        maw.setViewName("fragments/base");
+        maw.addObject("titulo", "Recuperacion");
+        maw.addObject("vista", "recuperacion/crear");
+        maw.addObject("recuperacionDto", recuperacionDto);
+        return maw;
+	}
+    
+    @PostMapping("/crear")
+	public ModelAndView creacion( @Valid RecuperacionDto recuperacionDto, BindingResult br, RedirectAttributes ra, HttpServletRequest request)
+    {
+     
+        if ( br.hasErrors() ) {
+			return this.crear(recuperacionDto);
+		}
+
+        Recuperacion u = new Recuperacion();
+        u.setMensaje(recuperacionDto.getMensaje());
+        u.setUsuario(usuarioRepositorio.findByEmail(recuperacionDto.getEmail()));
+        recuperacionRepositorio.save(u);
+        
+        ModelAndView maw = homeControlador.home();
+        maw.addObject("exito", "Mensaje enviado con Exito");
+        return maw;
+        /* 
+        HomeControlador hc = new HomeControlador();
+        return hc.home();
+        */
 	}
 
 }

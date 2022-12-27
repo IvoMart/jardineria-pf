@@ -30,16 +30,16 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests()
-                .antMatchers("/css/*", "/js/*", "/fonts/*", "/images/*", "/images/*/*", "/", "/registro")
+                .antMatchers("/css/*", "/js/*", "/fonts/*", "/images/*", "/images/*/*", "/", "/registro", "/crear")
                 .permitAll()
             .and()
-            .authorizeHttpRequests().antMatchers("/usuarios")//aca en realidad tendria que ir plantas
+            .authorizeHttpRequests().antMatchers("/usuarios")//aca en realidad tendria que ir plantas -/- el foro
                 .hasAnyRole("Administrador", "Usuario")
             .and()
-            .authorizeHttpRequests().antMatchers("/usuarios/crear")//aca en tambien
+            .authorizeHttpRequests().antMatchers("/usuarios/*/*", "/roles/*/*")// cruds de usuario y roles
                 .hasRole("Administrador")
             .and()
-            .authorizeHttpRequests().antMatchers("/usuarios/editar/*")//aca en tambien
+            .authorizeHttpRequests().antMatchers()// -/- el foro 
                 .hasRole("Usuario")
                 .anyRequest().authenticated()
             .and()

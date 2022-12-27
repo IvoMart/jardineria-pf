@@ -1,6 +1,16 @@
 <div class="container pt-3 my-auto" th:fragment="contenido">
     <div class="card-columns">
         <div class="card mb-3">
+            <div class="row"><!-- esto es boostrap para el mensaje de exito -->
+                <div th:if="${exito}" class="alert alert-success alert-dismissible fade show">
+                    <span th:text="${exito}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div th:if="${error}" class="alert alert-danger alert-dismissible fade show">
+                    <span th:text="${error}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
             <img class="card-img-top" src="/images/plantas/prueba.jpg" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Programe un casi FRONT!</h5>
