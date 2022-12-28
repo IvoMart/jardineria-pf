@@ -7,6 +7,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeControlador {
     
     @RequestMapping("/")
+    public ModelAndView index(){
+        ModelAndView maw = new ModelAndView();
+        maw.setViewName("fragments/home_base");
+        maw.addObject("titulo", "Inicio");
+        maw.addObject("vista", "home/home_index");
+        return maw;
+    }
+
+    @RequestMapping("/home")
     public ModelAndView home(){
         ModelAndView maw = new ModelAndView();
         maw.setViewName("fragments/base");
