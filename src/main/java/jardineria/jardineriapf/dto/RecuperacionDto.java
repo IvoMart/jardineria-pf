@@ -1,6 +1,6 @@
 package jardineria.jardineriapf.dto;
 
-import jardineria.jardineriapf.Validaciones.*;
+import jardineria.jardineriapf.validaciones.*;
 import jardineria.jardineriapf.entidades.*;
 
 import javax.validation.constraints.*;

@@ -1,4 +1,4 @@
-package jardineria.jardineriapf.Validaciones;
+package jardineria.jardineriapf.validaciones;
 
 import jardineria.jardineriapf.dto.*;
 import javax.validation.*;
