@@ -1,0 +1,60 @@
+<div class="container my-auto p-3" th:fragment="contenido">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Crear Publicación
+                </div>
+                <form class="card-body" th:action="@{/publicaciones/crear}" th:object="${publicacion}" method="POST" enctype="multipart/form-data">
+                    <div hidden>
+                        <input type="text" class="form-control" id="usuarioId" th:field="*{usuarioId}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('usuarioId')}" th:errors="*{usuarioId}"></div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="contenido" class="form-label">Publicacion</label>
+                        <input type="text" class="form-control" id="contenido" th:field="*{contenido}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('contenido')}" th:errors="*{contenido}"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fechaCreacion" class="form-label">Fecha de Creacion</label>
+                        <input type="date" class="form-control" id="fechaCreacion" th:field="*{fechaCreacion}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('fechaCreacion')}" th:errors="*{fechaCreacion}"></div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="plantas" class="form-label">Plantas</label>
+                        <select id="plantas" th:field="*{plantas}" class="select2 form-select" th:errorClass="'is-invalid'">
+                            <option selected value=""></option>
+                            <option th:each="p : ${_plantas}" th:value="${p.id}" th:text="${p.nombre_vulgar}"></option>
+                        </select>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('plantas')}" th:errors="*{plantas}"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="archivo" class="form-label">Foto</label>
+                        <input class="form-control" type="file" id="archivo" name="archivo" accept="image/*">
+                    </div>
+                    
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mx-2">Guardar</button>
+                        <a href="/publicaciones" class="btn btn-secondary mx-2">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:fragment="script">
+    $(document).ready(function() {
+        let fecha = new Date();
+        $('#fechaCreacion')[0].value = fecha.getFullYear() +"-"+ fecha.getMonth() +"-"+ fecha.getDate();
+        $('.select2').select2({
+            placeholder: 'Seleccione una opción',
+            allowClear: true,
+            width: '100%',
+        });
+    });
+</script>

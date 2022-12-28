@@ -5,33 +5,51 @@
                 <div class="card-header">
                     Editar Rol
                 </div>
-                <form class="card-body" th:action="@{'/roles/editar/{id}' (id=${rol.id})}" th:object="${roles}" th:method="PUT">
+                <form class="card-body" th:action="@{'/plantas/editar/{id}' (id=${planta.id})}" th:object="${planta}" th:method="PUT" enctype="multipart/form-data">
                     
-                    <div class="mb-3"><!-- aca se manda la accion y es un PUT -->
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:errorClass="'is-invalid'">
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                    <div class="mb-3">
+                        <label for="nombre_cientifico" class="form-label">Nombre Cientifico</label>
+                        <input type="text" class="form-control" id="nombre_cientifico" th:field="*{nombre_cientifico}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre_cientifico')}" th:errors="*{nombre_cientifico}"></div>
                     </div>
-                    <div class="mb-3"><!-- texto -->
+                    <div class="mb-3">
+                        <label for="nombre_vulgar" class="form-label">Nombre Vulgar</label>
+                        <input type="text" class="form-control" id="nombre_vulgar" th:field="*{nombre_vulgar}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre_vulgar')}" th:errors="*{nombre_vulgar}"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripcion</label>       
                         <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" th:errorClass="'is-invalid'">
                         <div class="invalid-feedback" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
                     </div>
+                    <div class="mb-3" th:if="${planta.foto != null}">
+                        <label>Foto</label>
+                        <img th:src="${'/images/plantas/' + planta.foto}" th:alt="${'Foto de ' + planta.nombre_vulgar}" height="100px">
+                    </div>
                     <div class="mb-3">
-                        <label for="estado" class="form-label">Seleccione un Estado</label><!-- select2 -->
-                        <select id="estado" th:field="*{estado}" class="select2 form-select" th:errorClass="'is-invalid'">
+                        <label for="archivo" class="form-label">Adjuntar Foto</label>
+                        <input class="form-control" type="file" id="archivo" name="archivo" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="prop" class="form-label">Propiedades</label>
+                        <input type="text" class="form-control" id="prop" th:field="*{propiedades}" th:each="p : ${planta.propiedades}" th:value="${p}" th:errorClass="'is-invalid'">                        
+                        <!-- <select id="propiedades" th:field="*{propiedades}" class="select2 form-select" th:errorClass="'is-invalid'">
                             <option selected value="1">Activo</option>
-                            <option selected value="0">Desactivado</option> <!-- th:text notacion de timeleaf -->
-                        </select>
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                            <option selected value="0">Desactivado</option>
+                        </select> -->
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('propiedades')}" th:errors="*{propiedades}"></div>
                     </div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary mx-2">Editar</button>
-                        <a href="/roles" class="btn btn-secondary mx-2">Volver</a>
+                        <a href="/plantas" class="btn btn-secondary mx-2">Volver</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script th:fragment="script"></script> <!-- Eato me tiraba error-->
+<script th:fragment="script">
+    function verDato(dato){
+        console.log(dato);
+    }
+</script>

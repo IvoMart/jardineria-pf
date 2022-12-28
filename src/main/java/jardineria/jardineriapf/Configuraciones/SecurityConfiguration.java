@@ -28,15 +28,16 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.sessionManagement();
         http
             .authorizeHttpRequests()
-                .antMatchers("/css/*", "/js/*", "/fonts/*", "/images/*", "/images/*/*", "/", "/registro", "/crear")
+                .antMatchers("/asetts/*/*","/css/*", "/js/*", "/fonts/*", "/images/*", "/images/*/*", "/")
                 .permitAll()
             .and()
-            .authorizeHttpRequests().antMatchers("/usuarios")//aca en realidad tendria que ir plantas -/- el foro
+            .authorizeHttpRequests().antMatchers("/usuarios")
                 .hasAnyRole("Administrador", "Usuario")
             .and()
-            .authorizeHttpRequests().antMatchers("/usuarios/*/*", "/roles/*/*")// cruds de usuario y roles
+            .authorizeHttpRequests().antMatchers("/usuarios/*/*", "/roles/*/*", "/plantas/*/*/*", "/publicaciones/*/*/*")
                 .hasRole("Administrador")
             .and()
             .authorizeHttpRequests().antMatchers()// -/- el foro 

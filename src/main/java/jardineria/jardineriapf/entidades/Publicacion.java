@@ -2,12 +2,16 @@ package jardineria.jardineriapf.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @NoArgsConstructor
@@ -21,13 +25,16 @@ public class Publicacion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String contenido;
+
     @ManyToOne
+    @JsonBackReference
     @NotNull
     private Usuario usuarioId;
 
-    @OneToOne
-    @NotNull
-    private Planta plantaId;
+    @ManyToMany
+    @Nullable
+    private List<Planta> plantas;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaCreacion;

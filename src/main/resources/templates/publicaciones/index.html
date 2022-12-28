@@ -12,42 +12,41 @@
         </div>
 
         <div class="row mb-5">
-            <div class="col h2">Listado de Roles</div>
-            <a href="/plantas/crear" class="col-auto btn btn-lg btn-success">
+            <div class="col h2">Listado de publicaciones</div>
+            <a href="/publicaciones/crear" class="col-auto btn btn-lg btn-success">
                 <i class="fa-solid fa-plus"></i>
             </a>
         </div>
-            
-        <table id="roles" class="display" style="width:100%">
+
+        <table id="publicaciones" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre Bulgar</th>
-                    <th>Nombre Cientifico</th>
-                    <th>Descripcion</th>
-                    <th>Propiedades</th>
+                    <th>Publicacion</th>
+                    <th>Fecha de Creacion</th>
+                    <th>Fecha de Modificacion</th>
+                    <th>Lugar de nacimiento</th>
+                    <th>Plantas</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="p : ${plantas}">
-                    <td th:text="${p.id}"></td>
-                    <td th:text="${p.nombre_vulgar}"></td>
-                    <td th:text="${p.nombre_cientifico}"></td>
-                    <td th:text="${p.descripcion}"></td>
-                    <td th:each="prop : ${p.propiedades}">
-                        <span th:text="${prop}"></span> <br/>
+                <tr th:each="pb : ${publicaciones}">
+                    <td th:text="${pb.contenido}"></td>
+                    <td th:text="${#dates.format(pb.fechaCreacion, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(pb.fechaModificacion, 'dd/MM/yyyy')}"></td>
+                    <td th:each="pl : ${pb.plantas}">
+                        <p th:text="${pl.nombre_vulgar}"></p>
                     </td>
                     <td>
-                        <a class="btn btn-primary" th:href="@{'/plantas/{id}' (id=${p.id})}">
+                        <a class="btn btn-primary" th:href="@{'/publicaciones/{id}' (id=${pb.id})}">
                             <i class="fa-solid fa-eye"></i>
                         </a>
 
-                        <a class="btn btn-secondary" th:href="@{'/plantas/editar/{id}' (id=${p.id})}">
+                        <a class="btn btn-secondary" th:href="@{'/publicaciones/editar/{id}' (id=${pb.id})}">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
 
-                        <form class="d-inline" th:action="@{'/plantas/{id}' (id=${p.id})}" th:method="DELETE">
+                        <form class="d-inline" th:action="@{'/publicaciones/{id}' (id=${pb.id})}" th:method="DELETE">
                             <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar?')">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
@@ -61,6 +60,6 @@
 
 <script th:fragment="script">
     $(document).ready(function() {
-        $('#roles').DataTable();
+        $('#publicaciones').DataTable();
     } );
 </script>

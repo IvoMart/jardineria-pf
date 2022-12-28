@@ -1,36 +1,46 @@
-<div class="container my-auto p-3" th:fragment="contenido"> <!-- esto es la vista del crear  -->
+<div class="container my-auto p-3" th:fragment="contenido">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    Crear Rol
-                </div>                                                                                                          <!-- se usa para lidiar con imagenes y la manda por partes -->
-                <form class="card-body" th:action="@{/roles/crear}" th:object="${rol}" method="POST">
-                    <div class="mb-3"><!-- texto -->
-                        <label for="nombre" class="form-label">Nombre</label>       
-                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:errorClass="'is-invalid'">
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                    Crear Planta
+                </div>
+                <form class="card-body" th:action="@{/plantas/crear}" th:object="${planta}" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="nombre_cientifico" class="form-label">Nombre Cientifico</label>       
+                        <input type="text" class="form-control" id="nombre_cientifico" th:field="*{nombre_cientifico}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre_cientifico')}" th:errors="*{nombre_cientifico}"></div>
                     </div>
-                    <div class="mb-3"><!-- texto -->
+                    <div class="mb-3">
+                        <label for="nombre_vulgar" class="form-label">Nombre Comun</label>       
+                        <input type="text" class="form-control" id="nombre_vulgar" th:field="*{nombre_vulgar}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre_vulgar')}" th:errors="*{nombre_vulgar}"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripcion</label>       
                         <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" th:errorClass="'is-invalid'">
                         <div class="invalid-feedback" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="estado" class="form-label">Seleccione un Estado</label><!-- select2 -->
-                        <select id="estado" th:field="*{estado}" class="select2 form-select" th:errorClass="'is-invalid'">
-                            <option selected value="1">Activo</option>
-                            <option selected value="0">Desactivado</option> <!-- th:text notacion de timeleaf -->
-                        </select>
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+                        <label for="archivo" class="form-label">Foto</label>
+                        <input class="form-control" type="file" id="archivo" name="archivo" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="propiedades" class="form-label">Propiedades</label>
+                        <input type="text" class="form-control" id="propiedades" th:field="*{propiedades}" th:errorClass="'is-invalid'">
+                        <div class="chip">
+                            Tag 220
+                            <i class="close fas fa-times"></i>
+                        </div>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('propiedades')}" th:errors="*{propiedades}"></div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary mx-2">Guardar</button><!-- esto siempre dentro del formulario sino no lo manda  -->
-                        <a href="/roles" class="btn btn-secondary mx-2">Volver</a>
+                        <button type="submit" class="btn btn-primary mx-2">Guardar</button>
+                        <a href="/plantas" class="btn btn-secondary mx-2">Volver</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script th:fragment="script"></script><!-- Eato me tiraba error-->
+<script th:fragment="script"></script>
