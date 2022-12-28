@@ -40,7 +40,8 @@ public class PublicacionServicio {
 				.orElseThrow(RuntimeException::new);
 		_publicacion.setFechaModificacion(publicacion.getFechaModificacion());
 		_publicacion.setUsuarioId(publicacion.getUsuarioId());
-		_publicacion.setPlantaId(publicacion.getPlantaId());
+		_publicacion.setContenido(publicacion.getContenido());
+		_publicacion.setPlantas(publicacion.getPlantas());
 		_publicacion.setFoto(publicacion.getFoto());
 		return PublicacionRepositorio.save(publicacion);
 	}
